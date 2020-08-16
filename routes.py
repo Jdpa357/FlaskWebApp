@@ -160,6 +160,20 @@ def productReg():
 
 
 # Billing section
+@app.route("/billingApi", methods=['GET', 'POST'])
+def billingInfo():
+
+    connection = db.engine.raw_connection()
+        
+    search = request.json["billing_id"]
+    cursor = connection.cursor()
+    query = "select * from billing where billing_code LIKE '{}%'".format(search)
+        
+    cursor.execute(query)
+    result = cursor.fetchall()
+
+    return jsonify(result)
+
 @app.route("/billing", methods=['GET', 'POST'])
 def showBilling():
 
