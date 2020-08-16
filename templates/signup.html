@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Sign Up with Sancho Limitada</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link href="../static/signup.css " rel="stylesheet ">
+
+    <script src="https://use.fontawesome.com/c76ec7ffb0.js"></script>
+</head>
+
+<body>
+
+    <div class="container ">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation">
+                        <a href="/">Home</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="products">Products</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="clients">Clients</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="billing">Billing</a>
+                    </li>
+                    <li role="presentation" class="active">
+                        <a href="#">Sign Up</a>
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">Python Flask App</h3>
+        </div>
+        <br \>
+        <div class="jumbotron ">
+            <h1 id="reg-title">Sancho Limitada Registry</h1>
+            <form class="form-signin" action="/signup" method="POST" enctype="multipart/form-data">
+                <label for="id_type" class="sr-only">Id Type</label>
+                <select type="select" name="id_type" id="id_type" class="form-control">
+                    <option value="0" selected>Select an option</option>
+                    <option value="1">Cedula Ciudadania</option>
+                    <option value="2">Cedula Extranjeria</option>
+                    <option value="3">NIT</option>
+                    <option value="4">Pasaporte</option>
+                    <option values="5">Registro Civil</option>
+                </select>
+                <label for="id_number" class="sr-only">Id Number</label>
+                <input type="name" name="id_number" id="id_number" class="form-control" placeholder="Id Number" required autofocus>
+                <label for="user_name" class="sr-only">Name</label>
+                <input type="name" name="user_name" id="user_name" class="form-control" placeholder="Name" required>
+                <label for="user_lastname" class="sr-only">Last Name</label>
+                <input type="text" name="user_lastname" id="user_lastname" class="form-control" placeholder="Last Name" required>
+                <label for="user_email" class="sr-only">Email address</label>
+                <input type="email" name="user_email" id="user_email" class="form-control" placeholder="Email address" required>
+                <label type="password" for="user_password" class="sr-only">Password</label>
+                <input type="password" name="user_password" id="user_password" class="form-control" placeholder="Password" required>
+                <label for="user_address" class="sr-only">Address</label>
+                <input type="text" name="user_address" id="user_address" class="form-control" placeholder="Address" required>
+                <label for="user_phone" class="sr-only">Phone Number</label>
+                <input type="text" name="user_phone" id="user_phone" class="form-control" placeholder="Phone" required>
+                <label for="user_picture" class="sr-only">Picture</label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="user_picture" id="user_picture" aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="user_picture">Choose file</label>
+                </div>
+
+                <button id="btnSignUp" class="btn btn-lg btn-primary btn-block " type="submit">Sign up</button>
+            </form>
+        </div>
+        <footer class="footer ">
+            <div class="card">
+                <h5 class="card-header">
+                    Sancho Ltda. Company 2020</h5>
+                <div class="card-body">
+                    <h5 class="card-title">Clothing & Co.</h5>
+                    <p class="card-text">Offering high Quality and Quantity to our clients around the world</p>
+                    <a href="#" class="btn btn-primary">Contact Us</a>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

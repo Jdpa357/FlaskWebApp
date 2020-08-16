@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <script src="https://use.fontawesome.com/c76ec7ffb0.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header" style="margin-bottom: 20px;">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation">
+                        <a href="/">Home</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="products">Products</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="clients">Clients</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="billing" class="active">Billing</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="signup">Sign Up</a>
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">Python Flask App</h3>
+        </div>
+
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="item active">
+                        <img src="../static/img/facturacion.jpg" style="width: 100%;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true" style="margin-top: 20px;">
+                <div class="card" style="width: 100%;">
+                    <div class="card-header" role="tab" id="headingOne">
+                        <h5>
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Register a Billing
+                  </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <form action="/billingRequest" method="POST" enctype="multipart/form-data">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputCode1">Billing Code</label>
+                                        <input type="number" name="inputCode1" class="form-control" id="inputCode1" placeholder="Billing Code">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputClient">Client</label>
+                                        <input type="text" name="inputClient" class="form-control" id="inputClient" placeholder="Client Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputProducts">Products</label>
+                                    <input type="text" name="inputProducts" class="form-control" id="inputProducts">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-2">
+                                        <label for="inputQuantity">Quantity</label>
+                                        <input type="number" name="inputQuantity" id="inputQuantity" class="form-control" placeholder="Quantity" required>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputDate1">Date</label>
+                                        <input type="date" name="inputDate1" class="form-control" id="inputDate1">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputTotal">Total Value</label>
+                                        <input type="number" name="inputTotal" class="form-control" id="inputTotal">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputPaymentMethod">Payment Method</label>
+                                        <select name="inputPaymentMethod" id="inputPaymentMethod" class="form-control">
+                                        <option value="0" selected>Select One</option>
+                                        <option value="1">Cash</option>
+                                        <option value="2">Credit Card</option>
+                                        <option value="3">PayPal</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button id="btnBilling" type="submit" class="btn btn-primary">Register Billing</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Consult Billing
+                  </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            <form action="/billing" method="POST">
+                                <div class="form-group row">
+                                    <label for="inputCode2" class="col-sm-2 col-form-label">Billing Code</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputCode2" name="inputCode2" placeholder="Code">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-10">
+                                        <button name="btnConsultBilling" type="submit" class="btn btn-primary">Check for results</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if billing_code %}
+            <form action="/billingUpdate" method="POST">
+                <div class="card">
+                    <h5 name="request_code" class="card-header">Billing Nº: {{billing_code}}</h5>
+                    <div class="card-body">
+                        <input hidden value="{{billing_id}}" name="billing_id">
+                        <input name="inputDate2" value="{{billing_date}}">
+                        <input name="inputCode3" value="{{billing_code}}">
+                        <input name="inputUser2" value="{{billing_user}}">
+                        <input name="inputProducts2" value="{{billing_products}}">
+                        <input name="inputQuantity2" value="{{products_quantity}}">
+                        <input name="inputValue2" value="{{billing_totalvalue}}">
+                        <input name="inputPayment2" value="{{billing_paymentmethod}}">
+                        <button name="btnEditBilling" type="submit" class="btn btn-primary">Edit Billing</button>
+                    </div>
+                </div>
+            </form>
+            {% endif %}
+        </div>
+
+        <footer class="footer">
+            <div class="card">
+                <h5 class="card-header">
+                    Sancho Ltda. Company 2020</h5>
+                <div class="card-body">
+                    <h5 class="card-title">Clothing & Co.</h5>
+                    <p class="card-text">Offering high Quality and Quantity to our clients around the world</p>
+                    <a href="#" class="btn btn-primary">Contact Us</a>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+
+</html>
