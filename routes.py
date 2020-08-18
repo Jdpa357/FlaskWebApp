@@ -64,10 +64,6 @@ def showSignUp():
         _user_picture = request.files['user_picture']
         _user_picture.save(os.path.join(app.config['UPLOAD_FOLDER'], _user_picture.filename))
 
-        if _user_picture.filename == '':
-            print("must have a filename")
-        if not allowed_image(_user_picture):
-            print("That image extension is not allowed")
 
         _registry_date = datetime.now()
 
@@ -232,6 +228,8 @@ def changeBilling():
         _total_value = request.form['inputValue2']
         _payment_method = request.form['inputPayment2']
 
+        billing_info = ([_billing_id, _billing_code, _client, _products, _date, _quantity, _total_value, _payment_method])
+
         try:
             cursor = connection.cursor()
             cursor.callproc('update_billing', (_billing_id, _billing_code, _client, _products, _date, _quantity, _total_value, _payment_method))
@@ -253,7 +251,7 @@ def showClients():
         search = request.form.get("userSearch")
         cursor = connection.cursor()
         query = "select * from users where user_name LIKE '{}%'".format(search)
-        
+
         cursor.execute(query)
         result = cursor.fetchall()
 
@@ -261,7 +259,7 @@ def showClients():
         route_split = user_image.split()
         file_name = route_split[1].strip("\'")
 
-        return render_template('clients.html',user_idnumber = result[0][2], user_name = result[0][3], user_lastname = result[0][4], user_email = result[0][5], user_phone = result[0][8], user_address = result[0][7], user_image = file_name)
+        return render_template('clients.html', response = result, user_image = file_name)
     else:
        return render_template('clients.html')
 
