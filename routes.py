@@ -92,15 +92,12 @@ def showProducts():
         cursor.execute(query)
         result = cursor.fetchall()
 
-        if result:
-
-            product_image = result[0][7]
-            route_split = product_image.split()
-            file_name = route_split[1].strip("\'")
+        product_image = result[0][7]
+        route_split = product_image.split()
+        file_name = route_split[1].strip("\'")
                 
-            return render_template('products.html', product_name = result[0][3], product_code = result[0][1], product_price = result[0][4], product_image = file_name, product_status = result[0][6])
-        else:
-            return render_template('products.html', product_status = 0)
+        return render_template('products.html', response = result, product_image = file_name)
+
     else:
        return render_template('products.html')
 

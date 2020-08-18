@@ -49,19 +49,19 @@
             </form>
 
             <div class="card-group row row-cols-1 row-cols-md-3" id="card-group" style="margin-top: 20px;">
-                {% if product_status %}
+                {% for product in response %} {% if product[6] %}
                 <form action="/productsDel" method="POST" enctype="multipart/form-data">
                     <div class="card col mb-4">
                         <img src="../static/img/uploads/{{product_image}}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <input value="{{product_name}}" name="product_name">
-                            <p class="card-text">Code: {{product_code}}</p>
-                            <p class="card-text"><small class="text-muted">Price: {{product_price}}</small></p>
+                            <input value="{{product[3]}}" name="product_name">
+                            <p class="card-text">Code: {{product[1]}}</p>
+                            <p class="card-text"><small class="text-muted">Price: {{product[4]}}</small></p>
                             <button name="btnDeleteProduct" type="submit" class="btn btn-primary">Deactivate Product</button>
                         </div>
                     </div>
                 </form>
-                {% elif product_status == 0 %}
+                {% elif product[6] == 0 %}
                 <div class="card border-dark mb-3" style="max-width: 18rem;">
                     <div class="card-header">Product is not in the Database</div>
                     <div class="card-body text-dark">
@@ -69,7 +69,7 @@
                         <p class="card-text">The product you are looking for might be out of stock or removed from our stores.</p>
                     </div>
                 </div>
-                {% endif %}
+                {% endif %} {% endfor %}
             </div>
         </div>
 
